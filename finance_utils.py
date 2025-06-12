@@ -181,20 +181,69 @@ def delete_transaction(transactions):
 
 def analyze_finances(transactions):
     """Calculate and display financial summaries."""
-    # Sum credits, debits, transfers
-    # Group by type or customer_id
-    # Print results
-    pass
+    if not transactions:
+        print("No transactions to analyze.")
+        return
+
+    totals = {'credit': 0, 'debit': 0, 'transfer': 0}
+
+    for t in transactions:
+        t_type = t['type']
+        totals[t_type] += t['amount']
+
+    print("\n--- Financial Summary ---")
+    print(f"Total Credits:   ${totals['credit']:.2f}")
+    print(f"Total Debits:    ${abs(totals['debit']):.2f}")
+    print(f"Total Transfers: ${totals['transfer']:.2f}")
+    print(f"Net Total:       ${sum(totals.values()):.2f}")
 
 def save_transactions(transactions, filename='financial_transactions.csv'):
     """Save transactions to a CSV file."""
-    # Open file for writing
-    # Write header
-    # Write each transaction
-    pass
+    if not transactions:
+        print("No transactions to save.")
+        return
+
+    try:
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            fieldnames = ['transaction_id', 'date', 'customer_id', 'amount', 'type', 'description']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for t in transactions:
+                writer.writerow({
+                    'transaction_id': t['transaction_id'],
+                    'date': t['date'].strftime('%Y-%m-%d'),
+                    'customer_id': t['customer_id'],
+                    'amount': t['amount'],
+                    'type': t['type'],
+                    'description': t['description']
+                })
+        print(f"Transactions saved to {filename}.")
+    except Exception as e:
+        print(f"Error saving transactions: {e}")
+
 
 def generate_report(transactions, filename='report.txt'):
     """Generate a text report of financial summaries."""
-    # Calculate metrics
-    # Write to file
-    pass
+    if not transactions:
+        print("No transactions to include in the report.")
+        return
+
+    totals = {'credit': 0, 'debit': 0, 'transfer': 0}
+
+    for t in transactions:
+        totals[t['type']] += t['amount']
+
+    try:
+        with open(filename, 'w') as csvfile:
+            csvfile.write("Smart Personal Finance Report\n")
+            csvfile.write("=============================\n")
+            csvfile.write(f"Total Credits:   ${totals['credit']:.2f}\n")
+            csvfile.write(f"Total Debits:    ${abs(totals['debit']):.2f}\n")
+            csvfile.write(f"Total Transfers: ${totals['transfer']:.2f}\n")
+            csvfile.write(f"Net Total:       ${sum(totals.values()):.2f}\n")
+
+        print(f"Report written to {filename}.")
+
+    except Exception as e:
+        print(f"Error writing report: {e}")
