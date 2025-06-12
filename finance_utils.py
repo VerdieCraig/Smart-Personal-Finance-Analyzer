@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime
 
-def load_transactions(filename='SampleTrans.csv'): #   SampleTrans.csv has the first 35 transactions of financial_transactions.csv
+def load_transactions(filename='SampleTrans.csv'): #   SampleTrans.csv has the first 34 transactions of financial_transactions.csv
     transactions = []
     #   Load transactions from csv file into list of dictionaries
     error_log = []
@@ -98,7 +98,7 @@ def add_transaction(transactions):
 def view_transactions(transactions):
     """Display transactions in a simple table."""
     if not transactions:
-        print("No transactions to display.")
+        print("No transactions to display. Transactions must be loaded first.")
         return
 
     print("\n{:<5} {:<12} {:<10} {:>10} {:<10} {}".format(

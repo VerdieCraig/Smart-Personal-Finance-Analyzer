@@ -6,7 +6,7 @@ A command-line Python application for managing and analyzing personal financial 
 
 - `finance_utils.py` — All core finance functions  
 - `main.py` — Entry point with the interactive menu  
-- `SampleTrans.csv` — Sample data file (35 transactions)  
+- `SampleTrans.csv` — Sample data file (34 transactions)  
 - `errors.txt` — Auto-generated log of bad or skipped input rows  
 - `report.txt` — Optional summary report output  
 
