@@ -1,6 +1,0 @@
-Smart Personal Finance Report
-=============================
-Total Credits:   $73882.02
-Total Debits:    $45342.87
-Total Transfers: $22846.20
-Net Total:       $51385.35
